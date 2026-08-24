@@ -45,46 +45,6 @@ samples/
   data_analyst_resume.txt
 ```
 
-## Setup
-
-### 1. Backend
-
-```bash
-cd backend
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-copy .env.example .env
-```
-
-Edit `backend/.env` and add your Gemini key:
-
-```env
-GEMINI_API_KEY=your_gemini_api_key_here
-GEMINI_MODEL=gemini-3.6-flash
-DATABASE_URL=sqlite:///./app/data/resume_screener.db
-FRONTEND_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
-```
-
-Start the API:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-The API runs at `http://localhost:8000`.
-
-### 2. Frontend
-
-```bash
-cd frontend
-npm install
-copy .env.example .env
-npm run dev
-```
-
-The dashboard runs at `http://localhost:5173`.
-
 ## API Endpoints
 
 ### `POST /screen`
@@ -138,15 +98,55 @@ The job description and parsed candidate data are included after the instruction
 
 ## Demo Flow
 
-1. Start the backend and frontend.
+1. Open the deployed Render application.
 2. Paste a job description into the dashboard.
 3. Upload resumes from the `samples/` folder or your own PDF resumes.
 4. Click **Screen resumes**.
 5. Review ranked scores, strengths, gaps, and recruiter justification.
 
-## Notes
+## Deploy On Render
 
-- This project intentionally uses Gemini only. If `GEMINI_API_KEY` is missing or invalid, screening fails.
-- PDF parsing quality depends on how the resume PDF stores text. Scanned image PDFs need OCR, which is outside the current scope.
-- The parser uses lightweight extraction for the demo. Gemini provides the final match reasoning.
-- On Render Free, local SQLite data can reset when the service restarts or redeploys. Use Render Postgres for persistent production storage.
+This repo is configured for a single Render Web Service using Docker. The Docker build compiles the React frontend and serves it from the FastAPI backend.
+
+### 1. Push To GitHub
+
+```bash
+git init
+git add .
+git commit -m "Initial smart resume screener"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/smart-resume-screener.git
+git push -u origin main
+```
+
+Do not commit `backend/.env`; it is already ignored.
+
+### 2. Create The Render Service
+
+1. Open the Render dashboard.
+2. Click **New +**.
+3. Choose **Blueprint** if Render detects `render.yaml`, or choose **Web Service** and connect the GitHub repo.
+4. Use these settings if creating the service manually:
+   - Runtime: Docker
+   - Branch: `main`
+   - Root Directory: leave blank
+   - Health Check Path: `/health`
+5. Add environment variables:
+   - `GEMINI_API_KEY`: your Gemini API key
+   - `GEMINI_MODEL`: `gemini-3.6-flash`
+   - `DATABASE_URL`: `sqlite:////tmp/resume_screener.db`
+   - `FRONTEND_ORIGINS`: leave blank for same-origin deployment
+   - Do not set `VITE_API_URL` on Render for the single-service deployment
+6. Click **Create Web Service**.
+
+After deployment, Render gives you a URL like:
+
+```text
+https://smart-resume-screener.onrender.com
+```
+
+Open that URL to use the dashboard. The API is served from the same domain.
+
+## Demo Video
+
+[Watch the demo video](assets/SmartResumeScreenerDemo.mp4)
