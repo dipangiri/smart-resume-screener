@@ -104,3 +104,6 @@ The job description and parsed candidate data are included after the instruction
 4. Click **Screen resumes**.
 5. Review ranked scores, strengths, gaps, and recruiter justification.
 
+## Demo Video
+
+https://github.com/user-attachments/assets/bbb4a858-f32c-4723-9674-675823795afd
