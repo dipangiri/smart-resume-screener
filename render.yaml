@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: smart-resume-screener
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.6-flash
+      - key: DATABASE_URL
+        value: sqlite:////tmp/resume_screener.db
+      - key: FRONTEND_ORIGINS
+        value: ""
+

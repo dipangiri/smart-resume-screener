@@ -1,8 +1,11 @@
 import json
+from pathlib import Path
 from typing import Annotated
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.config import get_frontend_origins
 from app.database import init_db, insert_candidate, insert_screening_run, list_candidates
@@ -83,6 +86,23 @@ async def screen_resumes(
 @app.get("/candidates")
 def candidates() -> dict:
     return {"candidates": [_row_to_candidate(row) for row in list_candidates()]}
+
+
+frontend_dist = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+if frontend_dist.exists():
+    app.mount("/assets", StaticFiles(directory=frontend_dist / "assets"), name="assets")
+
+
+@app.get("/{full_path:path}", include_in_schema=False)
+def serve_frontend(full_path: str):
+    index_file = frontend_dist / "index.html"
+    requested_file = frontend_dist / full_path
+
+    if requested_file.is_file():
+        return FileResponse(requested_file)
+    if index_file.exists():
+        return FileResponse(index_file)
+    raise HTTPException(status_code=404, detail="Frontend build not found.")
 
 
 def _response_candidate(candidate_id: int, candidate: dict) -> dict:
