@@ -1,0 +1,19 @@
+Priya Raman
+priya.raman@example.com
++91 98765 43210
+
+Summary
+Data analyst with 3 years of experience in dashboards, reporting, and business insights.
+
+Skills
+Python, SQL, Pandas, NumPy, Data Analysis, Power BI, Excel, Git
+
+Experience
+Data Analyst, FinEdge Analytics
+- Built weekly revenue dashboards and automated CSV cleaning workflows.
+- Partnered with product managers to define funnel metrics.
+- Used Python and SQL to investigate retention and conversion trends.
+
+Education
+B.Tech Information Technology, Anna University
+

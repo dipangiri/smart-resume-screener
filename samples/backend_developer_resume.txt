@@ -1,0 +1,19 @@
+Alex Carter
+alex.carter@example.com
++1 555 010 4455
+
+Summary
+Backend developer with 4 years of experience building APIs and automation tools for SaaS products.
+
+Skills
+Python, FastAPI, SQL, SQLite, PostgreSQL, REST API, Docker, Git, JavaScript, React
+
+Experience
+Backend Developer, Northstar Apps
+- Built FastAPI services for customer onboarding workflows.
+- Designed SQL schemas and optimized reporting queries.
+- Integrated AI features for ticket classification and support routing.
+
+Education
+B.S. Computer Science, Midwest State University
+
