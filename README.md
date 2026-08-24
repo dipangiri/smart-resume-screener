@@ -144,49 +144,6 @@ The job description and parsed candidate data are included after the instruction
 4. Click **Screen resumes**.
 5. Review ranked scores, strengths, gaps, and recruiter justification.
 
-## Deploy On Render
-
-This repo is configured for a single Render Web Service using Docker. The Docker build compiles the React frontend and serves it from the FastAPI backend.
-
-### 1. Push To GitHub
-
-```bash
-git init
-git add .
-git commit -m "Initial smart resume screener"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/smart-resume-screener.git
-git push -u origin main
-```
-
-Do not commit `backend/.env`; it is already ignored.
-
-### 2. Create The Render Service
-
-1. Open the Render dashboard.
-2. Click **New +**.
-3. Choose **Blueprint** if Render detects `render.yaml`, or choose **Web Service** and connect the GitHub repo.
-4. Use these settings if creating the service manually:
-   - Runtime: Docker
-   - Branch: `main`
-   - Root Directory: leave blank
-   - Health Check Path: `/health`
-5. Add environment variables:
-   - `GEMINI_API_KEY`: your Gemini API key
-   - `GEMINI_MODEL`: `gemini-3.6-flash`
-   - `DATABASE_URL`: `sqlite:////tmp/resume_screener.db`
-   - `FRONTEND_ORIGINS`: leave blank for same-origin deployment
-   - Do not set `VITE_API_URL` on Render for the single-service deployment
-6. Click **Create Web Service**.
-
-After deployment, Render gives you a URL like:
-
-```text
-https://smart-resume-screener.onrender.com
-```
-
-Open that URL to use the dashboard. The API is served from the same domain.
-
 ## Notes
 
 - This project intentionally uses Gemini only. If `GEMINI_API_KEY` is missing or invalid, screening fails.
