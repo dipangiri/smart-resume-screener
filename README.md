@@ -98,7 +98,7 @@ The job description and parsed candidate data are included after the instruction
 
 ## Demo Flow
 
-1. Open the deployed Render application.
+1. Open this [website](https://smart-resume-screener-h2bo.onrender.com).
 2. Paste a job description into the dashboard.
 3. Upload resumes from the `samples/` folder or your own PDF resumes.
 4. Click **Screen resumes**.
