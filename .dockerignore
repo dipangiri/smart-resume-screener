@@ -5,7 +5,7 @@ backend/.venv
 backend/app/data/*.db
 frontend/node_modules
 frontend/dist
+frontend/.env
 logs
 __pycache__
 *.pyc
-

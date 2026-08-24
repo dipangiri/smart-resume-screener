@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AlertCircle, BriefcaseBusiness, FileUp, Loader2, RefreshCw, Sparkles } from "lucide-react";
 import CandidateCard from "./components/CandidateCard.jsx";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_URL || "";
 
 const starterJobDescription =
   "We are hiring a Python backend developer with FastAPI, SQL, REST API design, Git, and experience building AI or NLP features. React experience is a plus.";
@@ -83,10 +83,6 @@ function App() {
             Upload resumes, paste a role description, and get ranked candidates with skills,
             strengths, gaps, and recruiter-style justification.
           </p>
-        </div>
-        <div className="status-pill">
-          <Sparkles size={18} />
-          Gemini API required
         </div>
       </section>
 

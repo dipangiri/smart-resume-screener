@@ -176,6 +176,7 @@ Do not commit `backend/.env`; it is already ignored.
    - `GEMINI_MODEL`: `gemini-3.6-flash`
    - `DATABASE_URL`: `sqlite:////tmp/resume_screener.db`
    - `FRONTEND_ORIGINS`: leave blank for same-origin deployment
+   - Do not set `VITE_API_URL` on Render for the single-service deployment
 6. Click **Create Web Service**.
 
 After deployment, Render gives you a URL like:

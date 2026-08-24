@@ -82,19 +82,6 @@ h3 {
   max-width: 760px;
 }
 
-.status-pill {
-  align-items: center;
-  background: #fff3bf;
-  border: 1px solid #ffe08a;
-  border-radius: 999px;
-  color: #5e4400;
-  display: inline-flex;
-  flex: 0 0 auto;
-  font-weight: 800;
-  gap: 8px;
-  padding: 10px 14px;
-}
-
 .workspace-grid {
   display: grid;
   gap: 24px;
@@ -350,4 +337,3 @@ textarea:focus,
     grid-template-columns: 1fr;
   }
 }
-
